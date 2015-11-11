@@ -11,6 +11,9 @@ alias g="git"
 alias h="history"
 alias j="jobs"
 
+alias stage="RAILS_ENV=staging c/script/zrails c"
+alias prod="RAILS_ENV=production c/script/zrails c"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

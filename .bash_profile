@@ -50,4 +50,6 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 export SANDBOX=malbani-sandbox.slno.net
 export SSH_KEY=~/.ssh/id_rsa.pub
 export STAGE=nutro-sandbox.slno.net
+
+export GOPATH=$HOME/go_work
 eval "$(rbenv init -)"

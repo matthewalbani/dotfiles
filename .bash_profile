@@ -47,9 +47,20 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter Ruby" killall;
 
+gitprune() {
+  git fetch --prune;
+  git branch --merged | grep -v "\*" | grep -Ev "(\*|master|production)" | xargs -n 1 git branch -d
+  git remote prune origin
+  for branch in `git branch -r --merged | grep -v HEAD`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r
+}
+
+gitamend() {
+  git add .;
+  git commit --amend --no-edit
+}
+
 export SANDBOX=malbani-sandbox.slno.net
 export SSH_KEY=~/.ssh/id_rsa.pub
 export STAGE=nutro-sandbox.slno.net
-
 export GOPATH=$HOME/go_work
 eval "$(rbenv init -)"

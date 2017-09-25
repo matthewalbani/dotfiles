@@ -59,6 +59,11 @@ gitamend() {
   git commit --amend --no-edit
 }
 
+dockerclean() {
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -q)
+}
+
 export SANDBOX=malbani-sandbox.slno.net
 export SSH_KEY=~/.ssh/id_rsa.pub
 export STAGE=nutro-sandbox.slno.net
@@ -74,3 +79,8 @@ if [ -f '/Users/matthewalbani/google-cloud-sdk/path.bash.inc' ]; then source '/U
 if [ -f '/Users/matthewalbani/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/matthewalbani/google-cloud-sdk/completion.bash.inc'; fi
 
 ssh-add -l > /dev/null || ssh-add -K ~/.ssh/id_rsa
+
+alias kc=kubectl
+alias pods="kc get pods"
+alias deps="kc get deployments"
+alias kdel="kubectl delete"

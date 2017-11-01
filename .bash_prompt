@@ -10,7 +10,7 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 fi;
 
 prompt_kc() {
-  kc config current-context
+  kubectl config current-context
 }
 
 prompt_git() {

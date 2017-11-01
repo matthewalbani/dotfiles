@@ -47,6 +47,11 @@ complete -W "NSGlobalDomain" defaults;
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter Ruby" killall;
 
+dockerprune() {
+  docker container prune -f --filter "until=24h"
+  docker image prune -a -f --filter "until=96h"
+}
+
 gitprune() {
   git fetch --prune;
   git branch --merged | grep -v "\*" | grep -Ev "(\*|master|production)" | xargs -n 1 git branch -d
@@ -80,7 +85,10 @@ if [ -f '/Users/matthewalbani/google-cloud-sdk/completion.bash.inc' ]; then sour
 
 ssh-add -l > /dev/null || ssh-add -K ~/.ssh/id_rsa
 
+
 alias kc=kubectl
 alias pods="kc get pods"
 alias deps="kc get deployments"
 alias kdel="kubectl delete"
+
+export PATH=$PATH:/tmp/etcd-download-test/

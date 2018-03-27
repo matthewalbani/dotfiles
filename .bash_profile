@@ -69,12 +69,6 @@ dockerclean() {
   docker rmi $(docker images -q)
 }
 
-export SANDBOX=malbani-sandbox.slno.net
-export SSH_KEY=~/.ssh/id_rsa.pub
-export STAGE=nutro-sandbox.slno.net
-export GOPATH=$HOME/go_work
-eval "$(rbenv init -)"
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # The next line updates PATH for the Google Cloud SDK.

@@ -55,7 +55,10 @@ dockerprune() {
 gitprune() {
   git fetch --prune;
   git branch --merged | grep -v "\*" | grep -Ev "(\*|master|production)" | xargs -n 1 git branch -d
-  git remote prune origin
+  for remote in `git remote`;
+  do
+   git remote prune $remote
+  done
   for branch in `git branch -r --merged | grep -v HEAD`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r
 }
 
